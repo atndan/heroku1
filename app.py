@@ -3,11 +3,12 @@ import cv2
 from keras.models import load_model
 from flask import Flask, render_template, Response
 app = Flask(__name__)
-video = cv2.VideoCapture(0)
+
 @app.route('/')
 def index():
     return render_template('index.html')
 def gen(video):
+    video = cv2.VideoCapture(0)
     while True:
         success, image = video.read()
         ret, jpeg = cv2.imencode('.jpg', image)
