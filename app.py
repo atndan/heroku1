@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
-def gen(video):
+def gen():
     video = cv2.VideoCapture(0)
     while True:
         success, image = video.read()
@@ -18,7 +18,7 @@ def gen(video):
 @app.route('/video_feed')
 def video_feed():
     global video
-    return Response(gen(video),
+    return Response(gen(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 if __name__ == '__main__':
     app.run()
