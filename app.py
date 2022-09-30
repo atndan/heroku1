@@ -1,5 +1,7 @@
-from flask import Flask, Response
+import numpy as np
 import cv2
+from keras.models import load_model
+from flask import Flask, render_template, Response
 app = Flask(__name__)
 video = cv2.VideoCapture(0)
 @app.route('/')
@@ -18,4 +20,4 @@ def video_feed():
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=2204, threaded=True)
+    app.run()
